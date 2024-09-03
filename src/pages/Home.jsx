@@ -1,12 +1,11 @@
 import React from "react";
 import Navbar from "../component/Navbar";
-import AnimeCard from "../component/AnimeCard";
-
+import Card from "../component/Card";
 const Home = () => {
   return (
     <div>
       <Navbar />
-      <AnimeCard />   
+      <Card />
     </div>
   );
 };
