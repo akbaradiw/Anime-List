@@ -6,7 +6,7 @@ const SearchComp = ({searchAnime}) => {
             <input
                 type="text"
                 placeholder="Search anime..."
-                className="border p-2 my-4"
+                className="shadow-md p-2 my-4"
                 onChange={(e) => searchAnime(e.target.value)}
             />
         </div>

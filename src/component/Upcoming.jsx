@@ -2,26 +2,22 @@ import React, { useEffect } from "react";
 import { animeStore } from "../stores/animeStore";
 import { Link } from "react-router-dom";
 
-const Card = () => {
-  const { anime, loading, error, getAnime } = animeStore();
+const Upcoming = () => {
+  const { upComing, loading, error, getUpcoming } = animeStore();
 
   useEffect(() => {
-    const timeOut = setTimeout(() => {
-      getAnime();
-    }, 500);
-    return () => clearTimeout(timeOut);
-  }, [getAnime]);
-
-    
+    getUpcoming();
+  }, []);
 
   return (
     <div className="pt-20">
+      <h1 className="text-3xl font-bold text-center pb-10">Coming Soon</h1>
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
 
-      <div className="grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 mx-20 mt-2 mb-4 gap-10">
-        {anime.map((anime) => (
-          <div key={anime.mal_id} className="border shadow-sm rounded-md">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 mx-60 mt-2 mb-4 gap-10">
+        {upComing.map((anime) => (
+          <div key={anime.mal_id} className="bg-amber-200 shadow-sm rounded-md">
             <p className=" text-center text-ellipsis overflow-hidden whitespace-nowrap font-bold px-4 py-4 ">
               {anime.title}
             </p>
@@ -33,8 +29,8 @@ const Card = () => {
                   : "Unknown"}
               </p>
             </div>
-            <div className="bg-slate-400 mb-6">
-              <p className="text-center overflow-hidden whitespace-nowrap px-4 font-semibold">
+            <div className="bg-black mb-6">
+              <p className="text-center text-amber-200 overflow-hidden whitespace-nowrap px-4 font-semibold">
                 {anime.genres.map((genre) => genre.name).join(", ")}
               </p>
             </div>
@@ -51,7 +47,8 @@ const Card = () => {
         ))}
       </div>
     </div>
+
   );
 };
 
-export default Card;
+export default Upcoming;

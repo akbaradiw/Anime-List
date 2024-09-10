@@ -1,10 +1,10 @@
 import React from "react";
 const FilterComp = ({filterAnime}) => {
   return (
-    <div>
+    <div className="pt-6">
       <select
         onChange={(e) => filterAnime(e.target.value)}
-        className="border ms-4 text-lg hover:shadow-2xl hover:cursor-pointer  font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="w-40 ms-4 text-lg shadow-md hover:cursor-pointer  font-semibold text-center text-black bg-amber-200 rounded-md hover:bg-amber-300 focus:ring-4 focus:outline-none dark:bg-amber-600 dark:hover:bg-amber-700 dark:focus:ring-amber-800"
         defaultValue="all"
       >
         <option value="all">All Genres</option>

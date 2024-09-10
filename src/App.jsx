@@ -3,7 +3,7 @@ import './App.css'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Home from './pages/Home'
 import Detail from './pages/Detail'
-// import Test from './pages/Test'
+import AllAnime from './pages/AllAnime'
 function App() {
 
   return (
@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/detail/:id" element={<Detail />} />
-        {/* <Route path="/test" element={<Test />} /> */}
+        <Route path="/all-anime" element={<AllAnime />} />
       </Routes>
     </BrowserRouter>
   )
