@@ -77,7 +77,7 @@ const AllAnimeCard = () => {
               data-aos-once="false"
             >
               <Link to={`/detail/${anime.mal_id}`}>
-                <p className=" text-center md:ps-20 lg:ps-10 ps-10 overflow-hidden hover:cursor-pointer hover:text-red-600 whitespace-nowrap font-bold px-2 py-2 w-64">
+                <p className=" text-center text-ellipsis overflow-hidden whitespace-nowrap font-bold hover:text-slate-600 px-4 py-4">
                   {anime.title}
                 </p>
               </Link>
