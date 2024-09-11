@@ -4,7 +4,6 @@ import axios from "axios";
 export const animeStore = create((set) => ({
   anime: [],
   filteredAnime: [],
-  topAnime: [],
   allAnime: [],
   upComing: [],
   news: [],
@@ -31,21 +30,7 @@ export const animeStore = create((set) => ({
     }
   },
 
-
-
-
-  getRandomAnime: async () => {
-    set({ loading: true, error: null });
-
-    try {
-      const response = await axios.get("https://api.jikan.moe/v4/random/anime");
-      set({ randomAnime: response.data.data, loading: false });
-    } catch (error) {
-      set({ error: error.message, loading: false });
-    }
-  },
-
-  
+ 
 
   getUpcoming: async () => {
     set({ loading: true });
@@ -82,22 +67,7 @@ export const animeStore = create((set) => ({
 
   setCurrentPage: (page) => set({ currentPage: page }),
 
-  getTopAnime: async () => {
-    set({ loading: true });
-    try {
-      const response = await axios.get("https://api.jikan.moe/v4/top/anime");
-      set({
-        topAnime: response.data.data,
-        loading: false,
-        error: null,
-      });
-    } catch (error) {
-      set({
-        error: error.message || "An error occurred while fetching data",
-        loading: false,
-      });
-    }
-  },
+
 
   filterAnime: (genre) =>
     set((state) => ({

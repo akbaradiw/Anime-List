@@ -4,6 +4,8 @@ import FilterComp from "./FilterComp";
 import SearchComp from "./SearchComp";
 import { Link } from "react-router-dom";
 import PageButton from "./PageButton";
+import "aos/dist/aos.css";
+import AOS from "aos";
 const AllAnimeCard = () => {
   const {
     filteredAnime,
@@ -11,7 +13,6 @@ const AllAnimeCard = () => {
     error,
     getAllAnime,
     filterAnime,
-    resetFilter,
     searchAnime,
     currentPage,
     setCurrentPage,
@@ -19,7 +20,16 @@ const AllAnimeCard = () => {
   } = animeStore();
 
   useEffect(() => {
-    getAllAnime(currentPage,);
+    AOS.init();
+  }, []);
+
+  
+
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      getAllAnime( currentPage);
+    }, 666);
+    return () => clearTimeout(timeOut);
   }, [getAllAnime, currentPage]);
 
   const handlePageClick = (page) => {
@@ -40,10 +50,10 @@ const AllAnimeCard = () => {
 
   return (
     <div>
-      <div className="pt-10">
-        <div className="flex justify-around pb-2">
+      <div className="lg:py-40 md:py-4 py-10">
+        <div className="lg:flex text-center md:flex md:justify-center md:gap-10 lg:justify-around pb-2">
           <SearchComp searchAnime={searchAnime} />
-          <FilterComp filterAnime={filterAnime} />
+          <FilterComp  filterAnime={filterAnime} />
         </div>
         <div className="pb-3">
           <PageButton
@@ -58,12 +68,20 @@ const AllAnimeCard = () => {
         {loading && <p>Loading...</p>}
         {error && <p>{error}</p>}
 
-        <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-1 mx-10 my-2 gap-8">
+        <div className="grid lg:grid-cols-6 md:grid-cols-2 grid-cols-1 mx-10 my-2 gap-8">
           {filteredAnime.map((anime) => (
-            <div key={anime.mal_id} className="bg-amber-200 shadow-sm rounded-md">
-              <p className=" text-center overflow-hidden whitespace-nowrap font-bold px-2 py-2 w-64">
-                {anime.title}
-              </p>
+            <div
+              key={anime.mal_id}
+              className="bg-amber-200 shadow-sm rounded-md"
+              data-aos="flip-right" data-aos-duration="1000"
+              data-aos-once="false"
+            >
+              <Link to={`/detail/${anime.mal_id}`}>
+                <p className=" text-center md:ps-20 lg:ps-10 ps-10 overflow-hidden hover:cursor-pointer hover:text-red-600 whitespace-nowrap font-bold px-2 py-2 w-64">
+                  {anime.title}
+                </p>
+              </Link>
+
               <div className="w-full flex justify-center  gap-4 bg-slate-200">
                 <p className="font-semibold"> {anime.episodes} Episodes</p>
                 <p className="font-semibold">
@@ -78,13 +96,11 @@ const AllAnimeCard = () => {
                 </p>
               </div>
               <div className="flex justify-center">
-                <Link to={`/detail/${anime.mal_id}`}>
-                  <img
-                    src={anime.images.jpg.image_url}
-                    alt={anime.title}
-                    className="rounded-lg shadow-lg mb-6 hover:scale-110 transition ease-in-out delay-150"
-                  />
-                </Link>
+                <img
+                  src={anime.images.jpg.image_url}
+                  alt={anime.title}
+                  className="rounded-lg shadow-lg mb-6"
+                />
               </div>
             </div>
           ))}

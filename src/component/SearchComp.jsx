@@ -2,7 +2,7 @@ import React from "react";
 const SearchComp = ({searchAnime}) => {
 
     return (
-        <div>
+        <div className="ms-1">
             <input
                 type="text"
                 placeholder="Search anime..."

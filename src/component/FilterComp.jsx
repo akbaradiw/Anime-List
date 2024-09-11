@@ -4,10 +4,10 @@ const FilterComp = ({filterAnime}) => {
     <div className="pt-6">
       <select
         onChange={(e) => filterAnime(e.target.value)}
-        className="w-40 ms-4 text-lg shadow-md hover:cursor-pointer  font-semibold text-center text-black bg-amber-200 rounded-md hover:bg-amber-300 focus:ring-4 focus:outline-none dark:bg-amber-600 dark:hover:bg-amber-700 dark:focus:ring-amber-800"
+        className="w-40 lg:ms-4 text-lg shadow-md hover:cursor-pointer  font-semibold text-center text-black bg-amber-200 rounded-md hover:bg-amber-300 focus:ring-4 focus:outline-none dark:bg-amber-600 dark:hover:bg-amber-700 dark:focus:ring-amber-800"
         defaultValue="all"
       >
-        <option value="all">All Genres</option>
+        <option value="all">Select Genres</option>
         <option value="Action">Action</option>
         <option value="Adventure">Adventure</option>
         <option value="Comedy">Comedy</option>

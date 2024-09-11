@@ -1,53 +1,60 @@
 import React, { useEffect, useState } from "react";
 import { animeStore } from "../stores/animeStore";
+import { Link } from "react-router-dom";
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 const Header = () => {
-  const { topAnime, loading, error, getTopAnime, randomAnime, getRandomAnime } = animeStore();
+  const { anime, getAnime } = animeStore();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    getTopAnime();
-  }, [getTopAnime]);
+    getAnime();
+  }, [getAnime]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
-        prevIndex === topAnime.length - 1 ? 0 : prevIndex + 1
+        prevIndex === anime.length - 1 ? 0 : prevIndex + 1
       );
     }, 3000);
 
-    return () => clearInterval(interval); 
-  }, [topAnime.length]);
+    return () => clearInterval(interval);
+  }, [anime.length]);
 
-
-
-
-  
-
-//   if (loading) return <p>Loading...</p>;
-//   if (error) return <p>Error: {error}</p>;
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   return (
-    
-    <div className=" pt-10 relative h-64 mb-20 w-full ">
-      {topAnime.length > 0 && (
+    <div
+      className=" hidden lg:block lg:pt-10 pt-7 px-10 lg:pe-40 "
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
+      {anime.length > 0 && (
         <>
-          <div className="flex justify-center  bg-amber-200 rounded-md shadow-md  mx-80">
-            <div className="px-10 ">
-              <h1 className="text-2xl py-6 font-bold">
-                {topAnime[currentIndex].title}
-              </h1>
-              <p className="text-sm">{topAnime[currentIndex].synopsis}</p>
+          <div className="lg:flex grid grid-cols-1  lg:justify-center relative  bg-amber-200 rounded-md shadow-md ">
+            <div className=" lg:py-4 py-2 lg:px-6 ">
+              <Link to={`/detail/${anime[currentIndex].mal_id}`}>
+                <h1 className="lg:text-2xl text-lg  text-center py-2  font-bold hover:cursor-pointer hover:text-slate-600 ">
+                  {anime[currentIndex].title}
+                </h1>
+              </Link>
+              <p className="text-sm   text-center  ">
+                {anime[currentIndex].synopsis}
+              </p>
+              {/* <p > {anime[currentIndex].genres.map((genre) => genre.name).join(", ")} </p> */}
             </div>
+
             <img
-              src={topAnime[currentIndex].images.jpg.image_url}
-              alt={topAnime[currentIndex].title}
-              className="w-64 p-4"
+              src={anime[currentIndex].images.jpg.image_url}
+              alt={anime[currentIndex].title}
+              className="w-full px-10  lg:h-full py-2 lg:py-4 lg:px-6"
             />
           </div>
         </>
       )}
-     
     </div>
   );
 };

@@ -1,12 +1,12 @@
 import React from 'react'
 import AllAnimeCard from '../component/AllAnimeCard'
-import Navbar from '../component/Navbar'
+import NavbarComp from '../component/NavbarComp'
 
 const AllAnime = () => {
     
     return (
         <div>
-            <Navbar />
+            <NavbarComp />
             <AllAnimeCard />
         </div>
     )

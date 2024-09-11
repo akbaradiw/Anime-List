@@ -14,9 +14,6 @@ const PageButton = ({handleNextPage, handlePrevPage, currentPage, totalPages }) 
           <GrLinkPrevious />
         
         </span>
-
-   
-
         <span
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
