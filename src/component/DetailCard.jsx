@@ -21,57 +21,58 @@ const DetailCard = ({ id }) => {
 
   return (
     <div className="pb-20">
-      <h1 className=" lg:pt-10 lg:text-3xl text-xl font-extrabold text-center">
+      <h1 className="pt-10 lg:text-3xl text-xl font-extrabold text-center">
         Detail Info
       </h1>
 
       {animeDetail && (
         <>
-          <div className="grid lg:grid-cols-2  lg:px-80 lg:pt-20  ">
+          <div className="grid grid-cols-1 lg:grid-cols-2 lg:px-40 px-4 lg:pt-20 pt-10 gap-8">
             <img
               src={animeDetail.images.jpg.image_url}
               alt={animeDetail.title}
-              className="rounded-lg shadow-sm lg:ms-40  ms-20 mb-6 lg:pt-12 pt-4 lg:w-80 "
+              className="rounded-lg shadow-sm mx-auto lg:w-80 w-60"
               data-aos="zoom-in"
               data-aos-duration="2000"
             />
 
             <div
-              className="bg-amber-200 divide-y mx-10 lg:mx-0 divide-amber-950 divide-y-reverse rounded-lg shadow-lg p-5"
+              className="bg-amber-200 divide-y divide-amber-950 divide-y-reverse rounded-lg shadow-lg p-5"
               data-aos="fade-left"
               data-aos-duration="2000"
             >
-              <h1 className="lg:text-xl underline decoration-double font-bold pb-5 text-center">
+              <h1 className="lg:text-xl text-lg underline decoration-double font-bold pb-5 text-center">
                 {animeDetail.title}
               </h1>
-              <div className="flex gap-2 text-sm  font-semibold lg:text-lg pb-2">
-                <p className="  text-blue-700">Genres: </p>
+
+              <div className="flex gap-2 text-xs lg:text-lg font-semibold pb-2">
+                <p className="text-blue-700">Genres:</p>
                 <p>
                   {animeDetail.genres.map((genre) => genre.name).join(", ")}
                 </p>
               </div>
-              <div className="flex gap-2 text-sm  font-semibold lg:text-lg pb-2">
-                <p className=" text-blue-700">Status: </p>
-                <p> {animeDetail.status}</p>
+              <div className="flex gap-2 text-xs lg:text-lg font-semibold pb-2">
+                <p className="text-blue-700">Status:</p>
+                <p>{animeDetail.status}</p>
               </div>
-              <div className="flex gap-2 text-sm  font-semibold lg:text-lg pb-2">
-                <p className=" text-blue-700">Episodes: </p>
+              <div className="flex gap-2 text-xs lg:text-lg font-semibold pb-2">
+                <p className="text-blue-700">Episodes:</p>
                 <p>{animeDetail.episodes}</p>
               </div>
-              <div className="flex gap-2 text-sm  font-semibold lg:text-lg pb-2">
-                <p className=" text-blue-700">Aired: </p>
+              <div className="flex gap-2 text-xs lg:text-lg font-semibold pb-2">
+                <p className="text-blue-700">Aired:</p>
                 <p>{animeDetail.aired.string}</p>
               </div>
-              <div className="flex gap-2 text-sm font-semibold lg:text-lg pb-2">
-                <p className=" text-blue-700">Duration: </p>
+              <div className="flex gap-2 text-xs lg:text-lg font-semibold pb-2">
+                <p className="text-blue-700">Duration:</p>
                 <p>{animeDetail.duration}</p>
               </div>
-              <div className="flex gap-2 text-sm font-semibold lg:text-lg pb-2">
-                <p className=" text-blue-700">Rating: </p>
-                <p> {animeDetail.rating}</p>
+              <div className="flex gap-2 text-xs lg:text-lg font-semibold pb-2">
+                <p className="text-blue-700">Rating:</p>
+                <p>{animeDetail.rating}</p>
               </div>
 
-              <p className="lg:text-lg  text-sm">{animeDetail.synopsis}</p>
+              <p className="lg:text-lg text-sm mt-4">{animeDetail.synopsis}</p>
             </div>
           </div>
         </>

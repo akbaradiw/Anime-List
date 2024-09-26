@@ -23,11 +23,9 @@ const AllAnimeCard = () => {
     AOS.init();
   }, []);
 
-  
-
   useEffect(() => {
     const timeOut = setTimeout(() => {
-      getAllAnime( currentPage);
+      getAllAnime(currentPage);
     }, 666);
     return () => clearTimeout(timeOut);
   }, [getAllAnime, currentPage]);
@@ -53,7 +51,7 @@ const AllAnimeCard = () => {
       <div className="lg:py-40 md:py-4 py-10">
         <div className="lg:flex text-center md:flex md:justify-center md:gap-10 lg:justify-around pb-2">
           <SearchComp searchAnime={searchAnime} />
-          <FilterComp  filterAnime={filterAnime} />
+          <FilterComp filterAnime={filterAnime} />
         </div>
         <div className="pb-3">
           <PageButton
@@ -68,39 +66,45 @@ const AllAnimeCard = () => {
         {loading && <p>Loading...</p>}
         {error && <p>{error}</p>}
 
-        <div className="grid lg:grid-cols-6 md:grid-cols-2 grid-cols-1 mx-10 my-2 gap-8">
+        <div className="grid lg:grid-cols-4 mx-4 2xl:grid-cols-5 md:grid-cols-2 grid-cols-1 lg:mx-10 2xl:mx-20 mt-2 mb-4 gap-5 lg:gap-5">
           {filteredAnime.map((anime) => (
             <div
               key={anime.mal_id}
-              className="bg-amber-200 shadow-sm rounded-md"
-              data-aos="flip-right" data-aos-duration="1000"
+              data-aos="flip-right"
+              data-aos-duration="1000"
               data-aos-once="false"
             >
-              <Link to={`/detail/${anime.mal_id}`}>
-                <p className=" text-center text-ellipsis overflow-hidden whitespace-nowrap font-bold hover:text-slate-600 px-4 py-4">
-                  {anime.title}
-                </p>
-              </Link>
+              <div className="bg-amber-200 shadow-sm rounded-md mx-1 sm:mx-6 lg:mx-2">
+                <Link to={`/detail/${anime.mal_id}`}>
+                  <p className="text-center font-bold text-ellipsis overflow-hidden whitespace-nowrap hover:text-slate-600 px-4 py-2">
+                    {anime.title}
+                  </p>
+                </Link>
 
-              <div className="w-full flex justify-center  gap-4 bg-slate-200">
-                <p className="font-semibold"> {anime.episodes} Episodes</p>
-                <p className="font-semibold">
-                  {anime.aired?.from
-                    ? new Date(anime.aired.from).toLocaleDateString()
-                    : "Unknown"}
-                </p>
-              </div>
-              <div className="bg-black mb-6">
-                <p className="text-center text-amber-200 overflow-hidden whitespace-nowrap px-4 font-semibold">
-                  {anime.genres.map((genre) => genre.name).join(", ")}
-                </p>
-              </div>
-              <div className="flex justify-center">
-                <img
-                  src={anime.images.jpg.image_url}
-                  alt={anime.title}
-                  className="rounded-lg shadow-lg mb-6"
-                />
+                <div className="w-full flex justify-around bg-slate-200 p-2">
+                  <p className="font-semibold text-sm lg:text-base">
+                    {anime.episodes} Episodes
+                  </p>
+                  <p className="font-semibold text-sm lg:text-base">
+                    {anime.aired?.from
+                      ? new Date(anime.aired.from).toLocaleDateString()
+                      : "Unknown"}
+                  </p>
+                </div>
+
+                <div className="bg-black p-2">
+                  <p className="text-center text-amber-200 font-semibold text-sm lg:text-base overflow-hidden whitespace-nowrap">
+                    {anime.genres.map((genre) => genre.name).join(", ")}
+                  </p>
+                </div>
+
+                <div className="flex justify-center pt-5 lg:px-2">
+                  <img
+                    src={anime.images.jpg.image_url}
+                    alt={anime.title}
+                    className="rounded-lg shadow-lg w-60 sm:w-40 lg:w-60 mb-6 hover:scale-110 transition-transform ease-in-out duration-300"
+                  />
+                </div>
               </div>
             </div>
           ))}

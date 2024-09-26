@@ -17,8 +17,8 @@ const NavbarComp = () => {
 
   return (
     <div>
-      <nav className="lg: bg-amber-200 border-b-2 border-black   py-2 lg:py-5  shadow-md fixed z-50  w-full">
-        <div className="container mx-auto flex-row flex justify-between  items-center">
+      <nav className="lg bg-amber-200 border-b-2 border-black   py-2 lg:py-5  shadow-md fixed z-50  w-full">
+        <div className="container px-10 mx-auto flex-row flex justify-between  items-center">
           <button className="text-amber-700 font-serif  underline decoration-wavy lg:text-3xl text-xl ps-4 lg:ps-0 font-extrabold  hover:cursor-pointer">
             {" "}
             OH ANIME{" "}
